@@ -23,17 +23,20 @@ Register
           <label for="email" class="form-label">Email</label>
           <input type="email" name="email" class="form-control" placeholder="Enter your email" required />
         </div>
-        <form method="POST">
-          <div class="form-group mb-4">
-              <label for="password">Password</label>
-              <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required />
+        <div class="form-group mb-4">
+          <label for="password">Password</label>
+          <div style="position: relative;">
+            <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required />
+            <span id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">👁️</span>
           </div>
-          <div class="form-group mb-4">
-              <label for="confirm_password">Confirm Password</label>
-              <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Retype your password" required oninput="checkPasswordMatch(this)" />
+        </div>
+        <div class="form-group mb-4">
+          <label for="confirm_password">Confirm Password</label>
+          <div style="position: relative;">
+            <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Retype your password" required />
+            <span id="toggleConfirmPassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">👁️</span>
           </div>
-    
-      
+        </div>
         <button type="submit" class="btn btn-primary btn-block w-100 mb-3">Register</button>
       </form>
     </div>
