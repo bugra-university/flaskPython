@@ -47,7 +47,6 @@
   </div>
 </div>
 
-
 <h3 class="text-center mt-5">Your To-Dos</h3>
 <ul class="list-group mt-3">
   {% for todo in todos %}
@@ -112,9 +111,6 @@
   </div>
 </div>
 
-
-
-
 <!-- Edit Modal -->
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -168,69 +164,13 @@
   </div>
 </div>
 
-
-
 <!-- WebcamJS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
-<script>
-  Webcam.set({
-    width: 320,
-    height: 240,
-    image_format: "jpeg",
-    jpeg_quality: 90,
-  });
-
-  function openWebcam() {
-    Webcam.attach("#my_camera");
-  }
-
-  function takeSnapshot() {
-    Webcam.snap(function (data_uri) {
-      document.getElementById("webcam_image").value = data_uri;
-      document.getElementById("snapshot").src = data_uri;
-      document.getElementById("snapshot_container").style.display = "block";
-
-      // Show notification
-      var notification = document.getElementById("notification");
-      notification.style.display = "block";
-      
-      // Automatically hide notification after 3 seconds
-      setTimeout(() => {
-        notification.style.display = "none";
-      }, 5000);
-    });
-  }
-
-  document
-    .getElementById("webcamModal")
-    .addEventListener("shown.bs.modal", openWebcam);
-  document
-    .getElementById("webcamModal")
-    .addEventListener("hidden.bs.modal", () => Webcam.reset());
-</script>
-
+<script src="static/js/webcam.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/static/js/dashboard.js"></script>
-<script>
-  if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js')
-          .then((registration) => {
-              console.log('Service Worker registered with scope:', registration.scope);
-              
-              // Request notification permission
-              return Notification.requestPermission();
-          })
-          .then((permission) => {
-              if (permission === 'granted') {
-                  console.log('Notification permission granted.');
-              } else {
-                  console.error('Notification permission denied.');
-              }
-          })
-          .catch((error) => {
-              console.error('Service Worker registration failed:', error);
-          });
-  }
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
 
   function sendNotification() {
       if (Notification.permission === 'granted') {
@@ -244,15 +184,9 @@
       }
   }
 
-  
-  
-
     {% if send_notification_js %}
                 {{ send_notification_js|safe }}
     {% endif %}
-
-
-
 
     window.addEventListener('online', () => {
       console.log('You are online!');
@@ -263,7 +197,5 @@
       console.log('You are offline!');
       alert('You are currently offline. Some features may not be available.');
     });
-
-</script>
 
 {% endblock %}
