@@ -3,8 +3,9 @@ const urlsToCache = [
     '/', // Home page
     '/static/css/dashboard.css',
     '/static/js/dashboard.js',
-    '/static/icons/notification.png',
-    '/static/icons/alert.png',
+    '/static/icons/notification-192.png', // Notification icon
+    '/static/icons/alert-192.png',        // Alert badge
+    '/static/icons/web-192.png'          // General app icon (if needed)
 ];
 
 self.addEventListener('install', (event) => {
@@ -35,7 +36,8 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
         caches.match(event.request).then((response) => {
             return response || fetch(event.request).catch(() => {
-                return caches.match('/'); // Change this to a fallback page if needed
+                // Optional fallback
+                return caches.match('/');
             });
         })
     );
@@ -44,8 +46,8 @@ self.addEventListener('fetch', (event) => {
 self.addEventListener('push', (event) => {
     const options = {
         body: event.data ? event.data.text() : 'You have a new message!',
-        icon: '/static/icons/notification.png',
-        badge: '/static/icons/alert.png'
+        icon: '/static/icons/notification-192.png', // Notification icon
+        badge: '/static/icons/alert-72.png'        // Badge for notifications
     };
     event.waitUntil(
         self.registration.showNotification('New Notification', options)
@@ -55,6 +57,6 @@ self.addEventListener('push', (event) => {
 self.addEventListener('notificationclick', (event) => {
     event.notification.close();
     event.waitUntil(
-        clients.openWindow('/dashboard') // Update URL as needed
+        clients.openWindow('/dashboard') // Redirect to dashboard
     );
 });
