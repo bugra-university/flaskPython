@@ -130,30 +130,59 @@ def home():
     return redirect(url_for('dashboard')) if current_user.is_authenticated else redirect(url_for('login'))
 
 # Register page
+# @app.route('/register', methods=['GET', 'POST'])
+# def register():
+#     """
+#     Registers a new user in the application.
+
+#     Handles GET and POST requests to '/register' route. If a POST request is received, 
+#     it extracts username, email, and password from the form data, hashes the password, 
+#     creates a new User instance, adds it to the database, and redirects to the login page 
+#     after displaying a success message. For GET requests, renders the 'register.html' template.
+
+#     Returns:
+#         str: A redirect response to the login page or the rendered 'register.html' template.
+#     """
+#     if request.method == 'POST':
+#         username = request.form.get('username')
+#         email = request.form.get('email')
+#         password = request.form.get('password')
+#         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+#         user = User(username=username, email=email, password=hashed_password)
+#         db.session.add(user)
+#         db.session.commit()
+#         flash('Your account has been created!', 'success')
+#         return redirect(url_for('login'))
+#     return render_template('register.html')
+@app.route('/register', methods=['GET', 'POST'])
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    """
-    Registers a new user in the application.
-
-    Handles GET and POST requests to '/register' route. If a POST request is received, 
-    it extracts username, email, and password from the form data, hashes the password, 
-    creates a new User instance, adds it to the database, and redirects to the login page 
-    after displaying a success message. For GET requests, renders the 'register.html' template.
-
-    Returns:
-        str: A redirect response to the login page or the rendered 'register.html' template.
-    """
     if request.method == 'POST':
         username = request.form.get('username')
         email = request.form.get('email')
         password = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
+
+        # Şifrelerin eşleşip eşleşmediğini kontrol et
+        if password != confirm_password:
+            flash('Passwords do not match. Please try again.', 'danger')
+            return redirect(url_for('register'))
+
+        # E-posta kontrolü
+        existing_user = User.query.filter_by(email=email).first()
+        if existing_user:
+            flash('This email is already registered. Please use a different email.', 'danger')
+            return redirect(url_for('register'))
+
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
         user = User(username=username, email=email, password=hashed_password)
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created!', 'success')
         return redirect(url_for('login'))
+
     return render_template('register.html')
+
 
 # Login page
 @app.route('/login', methods=['GET', 'POST'])

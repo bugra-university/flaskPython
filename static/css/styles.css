@@ -180,3 +180,14 @@ li.list-group-item {
     width: 30px;
     height: auto;
 }
+
+#passwordMismatchError {
+    display: none;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: red;
+    font-size: 0.9rem;
+  }
+  
