@@ -1,6 +1,7 @@
 {
     "name": "My To-Do App",
     "short_name": "To-Do",
+    "description": "A simple and intuitive To-Do application to help you manage your daily tasks effectively.",
     "icons": [
         {
             "src": "/static/icons/web-48.png",
