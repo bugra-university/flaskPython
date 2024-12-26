@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Settings{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="static/css/styles.css" />
+<div class="container my-5">
+    <h2 class="text-center mb-4">Settings</h2>
+    <div class="card-prosett {% if current_user.is_authenticated and current_user.theme == 'dark' %}dark-theme{% else %}light-theme{% endif %}">
+        <form method="POST" id="settingsForm">
+            <div class="form-group mb-4">
+                <label for="theme" class="form-label">Choose Theme</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-palette"></i></span>
+                    <select name="theme" class="form-select" id="theme">
+                        <option value="light" {% if user.theme == 'light' %}selected{% endif %}>Light</option>
+                        <option value="dark" {% if user.theme == 'dark' %}selected{% endif %}>Dark</option>
+                    </select>
+                </div>
+            </div>
+
+
+
+            <button type="submit" class="btn btn-success w-100 mt-3" style="border-radius: 10px;">Update Settings</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

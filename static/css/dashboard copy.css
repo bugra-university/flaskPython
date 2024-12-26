@@ -1,0 +1,51 @@
+body {
+  background-color: #f0f2f5;
+}
+
+.card {
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+  border-radius: 10px;
+}
+
+.btn-info,
+.btn-info:hover {
+  background: linear-gradient(135deg, #17a2b8, #0dcaf0);
+  border: none;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #28a745, #218838);
+  border: none;
+}
+
+.modal-header,
+.modal-footer {
+  border: none;
+}
+
+ul.list-group {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+li.list-group-item {
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+@media (max-width: 576px) {
+  .card {
+    width: 100%;
+  }
+}
