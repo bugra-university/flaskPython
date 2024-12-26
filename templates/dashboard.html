@@ -23,7 +23,6 @@
         <label for="due_date">Due Date</label>
         <input type="date" name="due_date" class="form-control" />
       </div>
-
       <div class="form-group mb-3 d-flex align-items-center">
           <div class="me-2 flex-fill">
               <label for="image">Attach Image</label>
@@ -36,7 +35,6 @@
               <button type="button" class="btn btn-info w-100" data-bs-toggle="modal" data-bs-target="#webcamModal">
                   Capture From Camera
               </button>
-             
           </div>
       </div>
       <div id="snapshot_container" class="mt-2" style="display: none">
@@ -170,32 +168,5 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/static/js/dashboard.js"></script>
 <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
-
-
-  function sendNotification() {
-      if (Notification.permission === 'granted') {
-          navigator.serviceWorker.getRegistration().then((registration) => {
-              registration.showNotification('New To-Do Added!', {
-                  body: 'A new task has been added to your to-do list.',
-                  icon: '/static/icons/notification.png',
-                  badge: '/static/icons/alert.png',
-              });
-          });
-      }
-  }
-
-    {% if send_notification_js %}
-                {{ send_notification_js|safe }}
-    {% endif %}
-
-    window.addEventListener('online', () => {
-      console.log('You are online!');
-      alert('You are back on the network. Welcome back!');
-    });
-
-    window.addEventListener('offline', () => {
-      console.log('You are offline!');
-      alert('You are currently offline. Some features may not be available.');
-    });
 
 {% endblock %}

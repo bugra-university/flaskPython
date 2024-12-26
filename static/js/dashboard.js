@@ -21,10 +21,10 @@ jQuery(document).ready(function ($) {
     // Add event listener to the image elements to open modal with the clicked image
     const todoImages = document.querySelectorAll('.todo-image');
     todoImages.forEach(img => {
-        img.addEventListener('click', function() {
-        const imgSrc = this.getAttribute('data-src');
-        const modalImage = document.getElementById('modal-image');
-        modalImage.src = imgSrc; // Set the source of the modal image
+        img.addEventListener('click', function () {
+            const imgSrc = this.getAttribute('data-src');
+            const modalImage = document.getElementById('modal-image');
+            modalImage.src = imgSrc; // Set the source of the modal image
         });
     });
 
