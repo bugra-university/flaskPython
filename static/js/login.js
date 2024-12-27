@@ -1,9 +1,16 @@
-const passwordField = document.querySelector('#password');
-const togglePassword = document.querySelector('#togglePassword');
+const passwordInput = document.getElementById("password");
+const togglePassword = document.getElementById("togglePassword");
+const eyeIcon = togglePassword.querySelector("i");
 
-// Şifre göster/gizle işlevi
-togglePassword.addEventListener('click', function () {
-  const type = passwordField.type === 'password' ? 'text' : 'password';
-  passwordField.type = type;
-  this.textContent = type === 'password' ? '👁️' : '🙈'; // Simgeyi değiştir
+togglePassword.addEventListener("click", function () {
+  // Şifre alanının türünü değiştir
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text"; // Şifreyi göster
+    eyeIcon.classList.remove("bi-eye-slash"); // Kapalı göz ikonunu kaldır
+    eyeIcon.classList.add("bi-eye"); // Açık göz ikonunu ekle
+  } else {
+    passwordInput.type = "password"; // Şifreyi gizle
+    eyeIcon.classList.remove("bi-eye"); // Açık göz ikonunu kaldır
+    eyeIcon.classList.add("bi-eye-slash"); // Kapalı göz ikonunu ekle
+  }
 });

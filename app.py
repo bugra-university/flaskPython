@@ -292,20 +292,27 @@ def delete_todo(id):
 @app.route('/toggle_status/<int:id>')
 @login_required
 def toggle_status(id):
-    """
-    Toggle the completion status of a to-do item.
-    """
     todo = Todo.query.get_or_404(id)
     if todo.owner != current_user:
         abort(403)
-    todo.completed = not todo.completed  # Toggle the status
+
+    todo.completed = not todo.completed  # Görev durumunu tersine çevir
     db.session.commit()
-    
-    # Bildirim içeriğini dinamik olarak oluştur
-    notification_message = f"Task {'completed' if todo.completed else 'set to pending'}: {todo.title}"
-    flash(notification_message, 'success')  # Alternatif: JSON ile frontend'e gönderilebilir
-    
+
+    # Duruma göre mesaj ve ikon belirle
+    if todo.completed:
+        flash(f"""
+            <i class="bi bi-check-circle-fill" style="color: green;"></i>
+            {todo.title} has been completed!
+        """, 'success')
+    else:
+        flash(f"""
+            <i class="bi bi-exclamation-circle-fill" style="color: orange;"></i>
+            {todo.title} has been set to pending!
+        """, 'warning')
+
     return redirect(url_for('dashboard'))
+
 
 
 @app.route('/edit_todo/<int:id>', methods=['POST'])
