@@ -276,25 +276,18 @@ def save_webcam_image(webcam_image):
 @app.route('/delete_todo/<int:id>')
 @login_required
 def delete_todo(id):
-    """
-    Delete a specific to-do item.
-
-    Parameters:
-    - id (int): The unique identifier of the to-do item to be deleted.
-
-    Returns:
-    - Redirects to the dashboard page after deleting the to-do item.
-
-    Raises:
-    - 403 error if the current user is not the owner of the to-do item.
-    """
     todo = Todo.query.get_or_404(id)
     if todo.owner != current_user:
         abort(403)
+    todo_title = todo.title  # Görevin başlığını alın
     db.session.delete(todo)
     db.session.commit()
-    flash('To-Do deleted!', 'success')
+    flash(f"""
+        <i class="bi bi-trash-fill" style="color: red;"></i>
+        To-Do '{todo_title}' has been deleted!
+    """, 'success')  # Dinamik mesaj
     return redirect(url_for('dashboard'))
+
 
 @app.route('/toggle_status/<int:id>')
 @login_required
@@ -318,21 +311,22 @@ def toggle_status(id):
 @app.route('/edit_todo/<int:id>', methods=['POST'])
 @login_required
 def edit_todo(id):
-    """
-    Edit a specific To-Do item based on the provided ID.
-    Check if the current user is the owner of the To-Do item before editing.
-    Update the title, content, and due date of the To-Do item.
-    Commit the changes to the database and redirect to the dashboard.
-    """
     todo = Todo.query.get_or_404(id)
     if todo.owner != current_user:
         abort(403)
-    todo.title = request.form.get('title')
+    old_title = todo.title  # Eski başlık
+    todo.title = request.form.get('title')  # Yeni başlık alınıyor
     todo.content = request.form.get('content')
     todo.due_date = datetime.strptime(request.form.get('due_date'), '%Y-%m-%d').date() if request.form.get('due_date') else None
     db.session.commit()
-    flash('To-Do updated!', 'success')
+    flash(f"""
+        <i class="bi bi-pencil-square" style="color: blue;"></i>
+        {old_title} has been updated to {todo.title}!
+    """, 'success')  # Güncellenmiş mesaj formatı
     return redirect(url_for('dashboard'))
+
+
+
 
 # Profile view for users to see and edit their profile
 @app.route('/profile', methods=['GET', 'POST'])

@@ -60,3 +60,39 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+document.addEventListener('DOMContentLoaded', function () {
+    
+// Flash mesajları seç
+    const flashMessages = document.querySelectorAll('.alert-success');
+    flashMessages.forEach(message => {
+        const text = message.innerText; // Flash mesajın metni
+        const icon = message.querySelector('i'); // Flash mesajdaki ikon (varsa)
+        
+        if (icon) {
+            // Bildirimin başlığı ikonun adına göre belirlenebilir
+            const title = icon.classList.contains('bi-trash-fill') ? 'To-Do Deleted' :
+                          icon.classList.contains('bi-pencil-square') ? 'To-Do Updated' :
+                          'Notification';
+            sendNotification(title, text); // Bildirim gönder
+        } else {
+            sendNotification('Notification', text); // İkon yoksa genel bildirim
+        }
+    });
+});
+
+// Bildirim gönderme fonksiyonu
+function sendNotification(title, body) {
+    if (Notification.permission === 'granted') {
+        navigator.serviceWorker.ready.then(function (registration) {
+            registration.showNotification(title, {
+                body: body,
+                icon: '/static/icons/notification-192.png', // İkonu burada özelleştirebilirsiniz
+                badge: '/static/icons/alert-192.png'       // Küçük ikon
+            });
+        }).catch(function (error) {
+            console.error('Error in sending notification:', error);
+        });
+    } else {
+        console.log('Notification permission not granted.');
+    }
+}
