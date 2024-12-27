@@ -301,23 +301,19 @@ def delete_todo(id):
 def toggle_status(id):
     """
     Toggle the completion status of a to-do item.
-
-    Parameters:
-    - id (int): The id of the to-do item to toggle status for.
-
-    Returns:
-    - Redirect: Redirects to the dashboard page after updating the to-do status.
-
-    Raises:
-    - 403 Error: If the current user is not the owner of the to-do item.
     """
     todo = Todo.query.get_or_404(id)
     if todo.owner != current_user:
         abort(403)
     todo.completed = not todo.completed  # Toggle the status
     db.session.commit()
-    flash('To-Do status updated!', 'success')
+    
+    # Bildirim içeriğini dinamik olarak oluştur
+    notification_message = f"Task {'completed' if todo.completed else 'set to pending'}: {todo.title}"
+    flash(notification_message, 'success')  # Alternatif: JSON ile frontend'e gönderilebilir
+    
     return redirect(url_for('dashboard'))
+
 
 @app.route('/edit_todo/<int:id>', methods=['POST'])
 @login_required

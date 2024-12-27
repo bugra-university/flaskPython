@@ -16,16 +16,14 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-function sendNotification() {
-    console.log('Attempting to send notification...');
+function sendNotification(title, body) {
     if (Notification.permission === 'granted') {
         navigator.serviceWorker.ready.then(function (registration) {
-            registration.showNotification('You have a new To-Do!', {
-                body: 'Check your dashboard for details!',
-                icon: '/static/icons/notification-192.png', // Güncellenmiş ikon yolu
-                badge: '/static/icons/alert-192.png' // Bildirim badge için doğru ikon yolu
+            registration.showNotification(title, {
+                body: body,
+                icon: '/static/icons/notification-192.png', // Bildirim ikonu
+                badge: '/static/icons/alert-192.png'       // Küçük ikon (badge)
             });
-            console.log('Notification sent!');
         }).catch(function (error) {
             console.error('Error in sending notification:', error);
         });

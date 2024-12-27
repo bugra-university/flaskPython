@@ -50,3 +50,13 @@ jQuery(document).ready(function ($) {
         }
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const flashMessages = document.querySelectorAll('.alert-success');
+    flashMessages.forEach(message => {
+        const text = message.innerText;
+        if (text.includes("Görev tamamlandı") || text.includes("Görev beklemeye alındı")) {
+            sendNotification('Görev Durumu Güncellendi', text);
+        }
+    });
+});
