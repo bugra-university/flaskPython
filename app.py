@@ -198,34 +198,29 @@ def logout():
 @app.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    """
-    Route for the dashboard page where users can add new todos and view existing ones.
-    Handles POST requests to add a new todo with title, content, due date, and optional image.
-    If POST request, adds the todo to the database, flashes a success message, and triggers a notification.
-    Retrieves all todos belonging to the current user and renders the dashboard template with the todos.
-    """
-    send_notification_js = None
-
     if request.method == 'POST':
-        # Add a new todo
+        # Yeni görev ekleme
         title = request.form.get('title')
         content = request.form.get('content')
         due_date_str = request.form.get('due_date')
         due_date = datetime.strptime(due_date_str, '%Y-%m-%d').date() if due_date_str else None
 
-        image_file = request.files.get('image')  # Get the uploaded image
-        webcam_image = request.form.get('webcam_image')  # Get the webcam image data
-
-        image_path_to_save = handle_image_upload(image_file, webcam_image)
-
-        todo = Todo(title=title, content=content, due_date=due_date, owner=current_user, image_path=image_path_to_save)
+        todo = Todo(title=title, content=content, due_date=due_date, owner=current_user)
         db.session.add(todo)
         db.session.commit()
-        flash('To-Do has been added!', 'success')
-        send_notification_js = 'sendNotification();'  # Ensure this line is here
+        flash(f"To-Do '{title}' has been added!", 'success')
 
+    # Tüm görevleri al
     todos = Todo.query.filter_by(owner=current_user).all()
-    return render_template('dashboard.html', todos=todos, send_notification_js=send_notification_js)
+    
+    # Yaklaşan görevleri belirle
+    today = datetime.now().date()
+    for todo in todos:
+        if todo.due_date and 0 <= (todo.due_date - today).days <= 2 and not todo.completed:
+            flash(f"The task '{todo.title}' is approaching! Due Date: {todo.due_date}", 'warning')
+
+    return render_template('dashboard.html', todos=todos)
+
 
 def handle_image_upload(image_file, webcam_image):
     """Handle the uploading and saving of an image from either a file upload or webcam.

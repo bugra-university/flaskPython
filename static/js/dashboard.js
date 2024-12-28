@@ -1,4 +1,3 @@
-// static/js/dashboard.js
 jQuery(document).ready(function ($) {
     // Edit Modal functionality
     $('#editModal').on('show.bs.modal', function (event) {
@@ -52,30 +51,43 @@ jQuery(document).ready(function ($) {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    const flashMessages = document.querySelectorAll('.alert-success');
-    flashMessages.forEach(message => {
-        const text = message.innerText;
-        if (text.includes("Görev tamamlandı") || text.includes("Görev beklemeye alındı")) {
-            sendNotification('Görev Durumu Güncellendi', text);
-        }
+    const flashMessages = document.querySelectorAll('.alert');
+    const flashContainer = document.querySelector('.flash-container'); // Flash mesajların bulunduğu yer
+
+    // Mark as Done ve Delete butonlarına event listener ekle
+    document.querySelectorAll('.btn-primary, .btn-danger').forEach(button => {
+        button.addEventListener('click', function () {
+            const taskTitle = this.closest('.list-group-item').querySelector('h5').innerText;
+
+            // Flash mesajlardan ilgili görevi kaldır
+            flashMessages.forEach(message => {
+                if (message.innerText.includes(taskTitle)) {
+                    message.remove(); // Flash mesajını DOM'dan kaldır
+                }
+            });
+        });
     });
 });
+
 document.addEventListener('DOMContentLoaded', function () {
-    
-// Flash mesajları seç
-    const flashMessages = document.querySelectorAll('.alert-success');
-    flashMessages.forEach(message => {
-        const text = message.innerText; // Flash mesajın metni
-        const icon = message.querySelector('i'); // Flash mesajdaki ikon (varsa)
-        
-        if (icon) {
-            // Bildirimin başlığı ikonun adına göre belirlenebilir
-            const title = icon.classList.contains('bi-trash-fill') ? 'To-Do Deleted' :
-                          icon.classList.contains('bi-pencil-square') ? 'To-Do Updated' :
-                          'Notification';
-            sendNotification(title, text); // Bildirim gönder
-        } else {
-            sendNotification('Notification', text); // İkon yoksa genel bildirim
+    // Yaklaşan görevler için flash mesajlar
+    const today = new Date();
+    const upcomingTasks = document.querySelectorAll('.list-group-item');
+
+    upcomingTasks.forEach(task => {
+        const dueDate = new Date(task.querySelector('.due-date').innerText);
+        const diffInDays = (dueDate - today) / (1000 * 60 * 60 * 24);
+
+        if (diffInDays >= 0 && diffInDays <= 2) {
+            const taskTitle = task.querySelector('h5').innerText;
+            const existingFlash = document.querySelector(`.alert-warning:contains("${taskTitle}")`);
+
+            if (!existingFlash) {
+                const flashMessage = document.createElement('div');
+                flashMessage.classList.add('alert', 'alert-warning');
+                flashMessage.innerText = `The task "${taskTitle}" is approaching! Due Date: ${dueDate.toDateString()}`;
+                document.querySelector('.flash-container').appendChild(flashMessage);
+            }
         }
     });
 });

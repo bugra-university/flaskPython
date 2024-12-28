@@ -59,7 +59,7 @@ flask-web-project/
     ```
 3. Activate the virtual environment:
     ```bash
-    source venv/bin/activate
+    venv\Scripts\activate
     ```
 4. Install the dependencies:
     ```bash
