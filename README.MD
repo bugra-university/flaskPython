@@ -50,7 +50,7 @@ flask-web-project/
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/flask-todo-app.git
+   git clone https://github.com/hanbugra82/flaskPython.git
    cd flask-todo-app
     ```
 2. Create a virtual environment:
