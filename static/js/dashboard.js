@@ -69,29 +69,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Yaklaşan görevler için flash mesajlar
-    const today = new Date();
-    const upcomingTasks = document.querySelectorAll('.list-group-item');
-
-    upcomingTasks.forEach(task => {
-        const dueDate = new Date(task.querySelector('.due-date').innerText);
-        const diffInDays = (dueDate - today) / (1000 * 60 * 60 * 24);
-
-        if (diffInDays >= 0 && diffInDays <= 2) {
-            const taskTitle = task.querySelector('h5').innerText;
-            const existingFlash = document.querySelector(`.alert-warning:contains("${taskTitle}")`);
-
-            if (!existingFlash) {
-                const flashMessage = document.createElement('div');
-                flashMessage.classList.add('alert', 'alert-warning');
-                flashMessage.innerText = `The task "${taskTitle}" is approaching! Due Date: ${dueDate.toDateString()}`;
-                document.querySelector('.flash-container').appendChild(flashMessage);
-            }
-        }
-    });
-});
-
 // Bildirim gönderme fonksiyonu
 function sendNotification(title, body) {
     if (Notification.permission === 'granted') {
