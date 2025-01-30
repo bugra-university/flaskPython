@@ -45,6 +45,12 @@ flask-web-project/
 │
 └── __pycache__/             # Cache directory for compiled Python files
 ```
+## Lighthouse Raporları
+
+Lighthouse was used to evaluate the performance, accessibility, and best practices of the project. You can view the reports from the links below:
+
+- [Lighthouse Report (Mobile)](./reports/lighthouse-report-mobile.html)
+- [Lighthouse Report (Masaüstü)](./reports/lighthouse-report-desktop.html)
 
 ## Installation
 
