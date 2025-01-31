@@ -28,7 +28,7 @@ from flask_sqlalchemy import SQLAlchemy
 # Initialize Flask application and configuration
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///site.db')
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16 MB
 app.config['REMEMBER_COOKIE_DURATION'] = timedelta(days=1)  # Adjust as needed
 
@@ -386,5 +386,6 @@ def create_tables():
 
 if __name__ == '__main__':
     with app.app_context():
-        db.create_all()  # Ensure tables are created before starting the app
-    app.run(debug=True)  # Enable debug mode for development
+        db.create_all()
+    app.run()  
+
