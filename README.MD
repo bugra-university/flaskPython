@@ -102,6 +102,19 @@ Follow these steps to set up and run the application:
    http://127.0.0.1:5000/
    ```
 
+## Screenshots 📸
+
+Here are some screenshots of the To-Do Application:
+
+### 📌 Home Page
+![Home Page](static/images/screenshot1.png)
+
+### 📝 Task Management
+![Task Management](static/images/screenshot2.png)
+
+### 🔒 User Authentication
+![User Authentication](static/images/screenshot3.png)
+
 ## Contributing
 
 Contributions are welcome! If you find any issues or have feature requests, feel free to create an issue or submit a pull request.
