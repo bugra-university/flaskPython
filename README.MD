@@ -107,13 +107,13 @@ Follow these steps to set up and run the application:
 Here are some screenshots of the To-Do Application:
 
 ### 📌 Home Page
-![Home Page](static/images/screenshot1.png)
+![Home Page](![Home Page](https://github.com/hanbugra82/flaskPython/blob/master/static/images/Screenshot1.png?raw=true)
 
 ### 📝 Task Management
-![Task Management](static/images/screenshot2.png)
+![Task Management](https://github.com/hanbugra82/flaskPython/blob/master/static/images/screenshot2.png?raw=true)
 
 ### 🔒 User Authentication
-![User Authentication](static/images/screenshot3.png)
+![User Authentication](https://github.com/hanbugra82/flaskPython/blob/master/static/images/screenshot3.png?raw=true)
 
 ## Contributing
 
