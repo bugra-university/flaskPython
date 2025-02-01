@@ -117,14 +117,35 @@ Follow these steps to set up and run the application:
 
 Here are some screenshots of the To-Do Application:
 
+<details>
+  <summary>### 📌 Home Page</summary>
+  <p>
+    <img src="static\images\Screenshot1.png" alt="Project Backlog">
+  </p>
+</details>
+
+<details>
+  <summary>📝 Task Management</summary>
+  <p>
+    <img src="static\images\screenshot2.png" alt="Architectural Diagram">
+  </p>
+</details>
+
+<details>
+  <summary>🔒 User Authentication</summary>
+  <p>
+    <img src="static\images\screenshot3.png" alt="Use Case Diagram">
+  </p>
+</details>
+
 ### 📌 Home Page
-![Home Page](https://github.com/hanbugra82/flaskPython/blob/master/static/images/Screenshot1.png?raw=true)
+![Home Page]
 
 ### 📝 Task Management
-![Task Management](https://github.com/hanbugra82/flaskPython/blob/master/static/images/screenshot2.png?raw=true)
+![Task Management]
 
 ### 🔒 User Authentication
-![User Authentication](https://github.com/hanbugra82/flaskPython/blob/master/static/images/screenshot3.png?raw=true)
+![User Authentication]
 
 ## Contributing
 
