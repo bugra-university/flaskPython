@@ -13,6 +13,7 @@
 
 A simple and intuitive To-Do list application built with Flask, utilizing SQLAlchemy for ORM, Flask-Login for user authentication, and Flask-Bcrypt for password hashing.
 
+
 ## Features
 
 - 🌐 **PWA compatible**: Installable as a Progressive Web App
@@ -22,10 +23,12 @@ A simple and intuitive To-Do list application built with Flask, utilizing SQLAlc
 - 📊 **Dashboard interface**: View and manage all To-Do tasks easily
 - ✅ **To-Do Management**: Create, edit, delete tasks, and upload images for tasks
 
+
 ### Account Management
 - 🗑️ **Sign Up**: Create a new account
 - 🔑 **Log In**: Access your existing account
 - 🔒 **Password Reset**: Securely reset your password
+
 
 ### To-Do Operations
 - ➕ **Create New Task**: Add new To-Do items
@@ -33,10 +36,12 @@ A simple and intuitive To-Do list application built with Flask, utilizing SQLAlc
 - ❌ **Delete Task**: Remove completed or unnecessary tasks
 - 📸 **Add Task Image**: Upload images related to your tasks
 
+
 ### Profile Management
 - 🖊️ **Update Profile Information**: Edit your personal details
 - 🖼️ **Change Profile Picture**: Upload a new profile image
 - 🎗 **Theme Preferences**: Toggle between Light and Dark modes
+
 
 ## Prerequisites
 
@@ -50,6 +55,7 @@ To run this project, ensure you have the following installed:
 - HTML5, CSS3, JavaScript
 - Service Workers (For PWA functionality)
 - Cache API (Offline support)
+
 
 ## Project Structure
 
@@ -79,6 +85,7 @@ flask-web-project/
 └── __pycache__/             # Cache directory for compiled Python files
 
 ```
+
 
 ## 🚀 Lighthouse Reports
 
@@ -113,12 +120,13 @@ Follow these steps to set up and run the application:
    http://127.0.0.1:5000/
    ```
 
+
 ## Screenshots 📸
 
 Here are some screenshots of the To-Do Application:
 
 <details>
-  <summary>### 📌 Home Page</summary>
+  <summary>📌 Home Page</summary>
   <p>
     <img src="static\images\Screenshot1.png" alt="Project Backlog">
   </p>
@@ -138,14 +146,6 @@ Here are some screenshots of the To-Do Application:
   </p>
 </details>
 
-### 📌 Home Page
-![Home Page]
-
-### 📝 Task Management
-![Task Management]
-
-### 🔒 User Authentication
-![User Authentication]
 
 ## Contributing
 
