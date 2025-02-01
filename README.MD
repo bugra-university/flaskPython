@@ -1,5 +1,5 @@
 <p align="center" width="100%">
-    <img width="33%" src="docs/images/university-logo.png" alt="University Logo" width="250"> 
+    <img width="33%" src="static\images\university-logo.png" alt="University Logo" width="250"> 
 </p>
 
 <p align="center">
