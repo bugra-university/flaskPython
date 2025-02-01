@@ -1,3 +1,14 @@
+<p align="center" width="100%">
+    <img width="33%" src="docs/images/university-logo.png" alt="University Logo" width="250"> 
+</p>
+
+<p align="center">
+    <strong>Buğra Han - 42078</strong>
+</p>
+
+
+
+
 # Flask PWA - ToDo Application
 
 A simple and intuitive To-Do list application built with Flask, utilizing SQLAlchemy for ORM, Flask-Login for user authentication, and Flask-Bcrypt for password hashing.
