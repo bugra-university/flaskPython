@@ -26,6 +26,9 @@ from flask_login import (
 from flask_sqlalchemy import SQLAlchemy
 from datetime import timedelta
 
+from dotenv import load_dotenv
+load_dotenv()
+
 # Initialize Flask application and configuration
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
