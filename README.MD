@@ -151,11 +151,52 @@ Here are some screenshots of the To-Do Application:
 
 Contributions are welcome! If you find any issues or have feature requests, feel free to create an issue or submit a pull request.
 
+
 ## Repository
 
 You can view and clone the project from the GitHub repository:
 
 📂 **Repository Link:** [Flask PWA - ToDo Application](https://github.com/hanbugra82/flaskPython)
+
+
+## Heroku Deployment
+
+If you want to deploy your project to a cloud environment rather than your local computer, you can use **Heroku**. Heroku is a platform that allows you to quickly deploy and manage your applications in the cloud. You can follow these steps to deploy your application on Heroku:
+
+1. **Create a New Application on Heroku**:
+   ```bash
+   heroku create your-app-name
+2. **Push Your Application to Heroku**:
+   ```bash
+   git push heroku master
+3. **Check if Your Application Is Successfully Deployed**:
+   ```bash
+   https://your-app-name.herokuapp.com
+
+
+## Database Setup on Heroku
+
+To create and set up your database on **Heroku**, follow the steps below:
+
+1. **Run the Database Creation Script**:
+   ```bash
+   heroku run python create_db.py --app your-app-name
+   This command will create the necessary database tables.
+2. **Test Your Database**:
+   To ensure that the database is working correctly, you can log into your application and add or manage tasks in the To-Do list.
+
+
+## Custom Domain Setup
+
+If you've purchased a custom domain through hosting.com.tr, like www.hanbugra.com.tr, you can point this domain to your Heroku app. Here’s how:
+
+1. Go to the any hosting web sites control panel.
+2. Add your custom domain under the DNS settings.
+3. Point the domain to the DNS target provided by Heroku. For example:
+   ```bash
+   peaceful-everglades-73t012l2hq1m0qg2em...
+
+Now, your custom domain should be linked to your Heroku app, and you can access it through "www.hanbugra.com.tr"
 
 
 ## License
